@@ -36,7 +36,7 @@ defmodule Exheroku.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_exheroku_key",
-    signing_salt: "rFYU1ONn"
+    signing_salt: "QuRQ/sst"
 
   plug Exheroku.Router
 end

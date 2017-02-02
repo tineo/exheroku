@@ -20,6 +20,11 @@ defmodule Exheroku.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
+      alias Exheroku.Repo
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
+
 
       # The default endpoint for testing
       @endpoint Exheroku.Endpoint
@@ -27,6 +32,11 @@ defmodule Exheroku.ChannelCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Exheroku.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(Exheroku.Repo, {:shared, self()})
+    end
 
     :ok
   end

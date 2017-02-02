@@ -20,6 +20,11 @@ defmodule Exheroku.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
+      alias Exheroku.Repo
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
+
       import Exheroku.Router.Helpers
 
       # The default endpoint for testing
@@ -28,6 +33,11 @@ defmodule Exheroku.ConnCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Exheroku.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(Exheroku.Repo, {:shared, self()})
+    end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
