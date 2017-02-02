@@ -5,10 +5,14 @@
 # is restricted to this project.
 use Mix.Config
 
+# General application configuration
+config :exheroku,
+  ecto_repos: [Exheroku.Repo]
+
 # Configures the endpoint
 config :exheroku, Exheroku.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "/jLJ78OEK1jJ3sE0DF21ks5/0Hykpnh03nddY6wHDYvfc3Otz2kBWQJuX1kGvACY",
+  secret_key_base: "spQGTsYgkkEaq9F13ZI72UKyiLYUugOZ5c1Jphf0RVhmwHbiks5jorgcOh/yo9dT",
   render_errors: [view: Exheroku.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Exheroku.PubSub,
            adapter: Phoenix.PubSub.PG2]
