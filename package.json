@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "brunch": "^2.10.5"
+  }
+}
